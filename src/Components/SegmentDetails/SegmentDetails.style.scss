@@ -1,0 +1,77 @@
+.SegmentDetails-Container {
+  .Title {
+    background: cadetblue;
+    color: white;
+    padding: 16px;
+  }
+
+  .Input-Wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    padding: 24px;
+
+    .Input {
+      width: 280px;
+      height: 34px;
+      padding-left: 4px;
+    }
+  }
+
+  .SchemaList-Wrapper {
+    border: 1px solid skyblue;
+    width: 310px;
+    margin-left: 24px;
+    .SchemaList-Container {
+      padding: 16px 24px 16px 24px;
+
+      .DropDown-List {
+        width: 260px;
+        height: 35px;
+      }
+    }
+  }
+
+  .DropDown-Container {
+    padding: 24px;
+    .DropDown-List {
+      width: 260px;
+      height: 35px;
+    }
+  }
+
+  .AddNew-Schema {
+    margin: 14px 24px 0px 24px;
+    color: cadetblue;
+    border-bottom: 1px solid cadetblue;
+    width: 129px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .Button-Wrapper {
+    display: flex;
+    gap: 20px;
+    padding: 24px;
+    position: absolute;
+    bottom: 0px;
+    .cancel-btn {
+      border: none;
+      background: red;
+      float: right;
+      padding: 10px 16px;
+      cursor: pointer;
+      color: white;
+      border-radius: 4px;
+    }
+    .Save-btn {
+      border: none;
+      background: cadetblue;
+      float: right;
+      padding: 10px 16px;
+      cursor: pointer;
+      color: white;
+      border-radius: 4px;
+    }
+  }
+}
