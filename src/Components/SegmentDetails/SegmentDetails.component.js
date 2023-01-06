@@ -50,16 +50,16 @@ class SegmentDetails extends Component {
   }
 
   renderSchema() {
-    const { schemaCollection, handleOnChange } = this.props;
+    const { schemaCollection, schemaHandleOnChange } = this.props;
     return (
       <>
         {schemaCollection?.length > 0 && (
           <div className="SchemaList-Wrapper">
             {schemaCollection?.map((res, i) => {
-              const key = Object.keys(res);
+              const key = res.value.replace(/ /g,"_").toLowerCase()
               return (
                 <div key={i} className="SchemaList-Container">
-                  <Field selectedKey={key[0]} handleOnChange={handleOnChange} />
+                  <Field selectedKey={key} id={res.id} handleOnChange={schemaHandleOnChange} />
                 </div>
               );
             })}

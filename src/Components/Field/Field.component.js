@@ -12,15 +12,16 @@ class Field extends Component {
     { id: 6, label: "City", value: "city" },
     { id: 7, label: "State", value: "state" },
   ];
-  
+
   dropDownList() {
-    const { handleOnChange, selectedKey } = this.props;
+    const { handleOnChange, selectedKey, id } = this.props;
 
     return (
       <select
         className="DropDown-List"
         value={selectedKey}
         onChange={handleOnChange}
+        id={id}
       >
         {this.dropDownValue.map((res, i) => {
           return (

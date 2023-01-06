@@ -16,6 +16,7 @@ class SegmentDetailsContainer extends Component {
     handleOnChange: this.handleOnChange.bind(this),
     addSchema: this.addSchema.bind(this),
     saveSegment: this.saveSegment.bind(this),
+    schemaHandleOnChange: this.schemaHandleOnChange.bind(this),
   };
 
   addSchema() {
@@ -25,17 +26,28 @@ class SegmentDetailsContainer extends Component {
     });
   }
 
+  schemaHandleOnChange({ currentTarget }) {
+    const list = [...this.state.schemaCollection];
+    list.map((res) => {
+      if (res.id === +currentTarget.id) {
+        res.value = currentTarget[currentTarget.selectedIndex].text;
+      }
+    });
+    this.setState({
+      schemaCollection: list,
+    });
+  }
+
   handleOnChange({ currentTarget }) {
-    let schemaList = { ...this.state.schemaList };
-    
+    const { schemaList } = this.state;
+
     if (currentTarget.name) {
       schemaList[currentTarget.name] = currentTarget.value;
     } else {
       const schema = {};
-      let id = 0;
 
-      schema[currentTarget.value] = currentTarget[currentTarget.selectedIndex].text;
-      schema["id"] = id + 1;
+      schema["value"] = currentTarget[currentTarget.selectedIndex].text;
+      schema["id"] = schemaList?.schema?.length + 1;
       schemaList.schema.push(schema);
     }
 
@@ -45,8 +57,18 @@ class SegmentDetailsContainer extends Component {
     });
   }
   saveSegment() {
-    const { schemaList } = this.state;
-    Request(schemaList);
+    const { schemaCollection } = this.state;
+    const query = schemaCollection.reduce((obj, res) => {
+        const key = res.value.replace(/ /g,"_").toLowerCase()
+        obj[key] = res.value
+        return obj
+    }, {})
+
+    let bodyObj = {
+        segment_name: this.state.schemaList.segment_name,
+        schema: [query]
+    }
+    Request(bodyObj);
   }
 
   render() {
